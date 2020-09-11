@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button2></button2>
+        <button2 @xxx='alert(1)'>修改按钮的文字</button2>
+        <button3></button3>
+        <button4></button4>
+    </div>
+    <script type="text/x-template" id="myBtn">
+        <a href="javascript:void(0)" @click='$emit("xxx")'>
+            <slot>默认文本</slot>
+        </a>
+    </script>
+    <script>
+        // 全局组件
+        Vue.component('button2', {
+            template: '#myBtn'
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+
+            },
+            // 局部组件
+            components: {
+                // botton3是组件名
+                "button3": {
+                    template: "<span>span按钮</span>",
+                    props: ["msg", "count"]
+                },
+                "button4": {
+                    template: "<button>button组件</button>",
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

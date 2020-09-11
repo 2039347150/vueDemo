@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <form-component :id="109" sex="男" intro="{'message','hello'}"></form-component>
+    </div>
+    <script>
+        Vue.component('form-component', {
+            template: `
+                <ul>
+                    <li>id={{id}},id is Number?{{id===109}}</li>
+                    <li>sex={{sex}}</li>
+                    <li>intro:{{intro}}</li>
+                </ul>
+            `,
+            props: {
+                id: Number,
+                sex: [Number, String],
+                username: {
+                    type: String,
+                    required: true
+                },
+                intro: {
+                    type: Object,
+                    default: function() {
+                        return {
+                            message: "hi!"
+                        }
+                    }
+                }
+            }
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

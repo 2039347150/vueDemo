@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 作业2 -->
+        <div>
+            <p>
+                添加一个todo任务：<input type="text" value="" v-model="msg"><button @click="addValue">add</button>
+                <ul>
+                    <li>任务1<button>删除</button></li>
+                    <li v-for="(item,index) in txt">{{item}}<button @click="delValue(index)">删除</button></li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '任务1',
+                txt: []
+            },
+            methods: {
+                addValue() {
+                    // var sentence = `<span>${this.msg}</span><button><`
+                    this.txt.push(this.msg);
+                    // console.log('数组为:', this.txt);
+                    // console.log(this.msg);
+                },
+                delValue(index) {
+                    this.txt.splice(index, 1);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

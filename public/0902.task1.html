@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 作业1 -->
+        <div>
+            <button @click="go">GO</button>
+            <button @click="stop">STOP</button>
+            <p v-html="msg"></p>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '猥琐发育，别浪',
+                txt: '',
+                txt2: ' ',
+                timer: null,
+            },
+            methods: {
+                go() {
+                    this.timer = setInterval(function() { //定时器没有效果？
+                        // this.timer = setInterval(() => {
+                        this.txt = this.msg.substr(0, 3)
+                        this.txt2 = this.msg.substr(3, 4)
+                        this.msg = this.txt2 + this.txt;
+                        // console.log(this.txt)
+                        // console.log('txt2为：', this.txt2)
+                    }.bind(this), 1000)
+                },
+                stop() {
+                    if (this.timer) {
+                        clearInterval(this.timer);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

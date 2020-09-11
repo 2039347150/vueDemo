@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: 'Hello Vue',
+                count: 0
+            },
+            beforeCreate() {
+                // debugger
+                console.log("vue初始data和方法之前被调用")
+                console.log(this.count, this.msg);
+            },
+            created() {
+                console.log("vue初始data和方法之后被调用")
+                console.log(this.count, this.msg);
+            },
+            beforeMount() {
+                console.log('渲染模板挂载el节点之前');
+            },
+            mounted() {
+                console.log('渲染模板挂载el节点之后');
+            },
+            beforeUpdate() {
+                console.log('页面数据发生变化更新dom之前')
+            },
+            updated() {
+                console.log('页面数据发生变化更新dom之后')
+            },
+            beforeDestroy() {
+                console.log('vue实例被销毁之前');
+            },
+            destroyed() {
+                console.log('bye bye!!');
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

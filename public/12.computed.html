@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>函数、表达式、计算属性的区别{{foo}}</h2>
+        <h2>表达式</h2>
+        <p>{{msg+Math.random()}}</p>
+        <p>{{msg+Math.random()}}</p>
+        <h2>函数</h2>
+        <p>{{randomMsg()}}</p>
+        <p>{{randomMsg()}}</p>
+        <h2>计算属性</h2>
+        <p>{{rdmMsg}}</p>
+        <p>{{rdmMsg}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '__',
+                foo: Math.random()
+            },
+            methods: {
+                randomMsg() {
+                    return this.msg + Math.random();
+                }
+            },
+            computed: {
+                rdmMsg: function() {
+                    return this.msg + Math.random();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

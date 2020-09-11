@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        img {
+            width: 15%;
+            height: 15%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <!-- --数据的双向绑定-- -->
+            <p>我最喜欢的老师是：{{msg}}</p>
+            <input type="text" v-model="msg">
+        </div>
+        <div>
+            <p>
+                显示<input type="radio" value="显示" @click="show=true" :checked="show"> 隐藏
+                <input type="radio" value="隐藏" @click="show=false" :checked="!show">
+            </p>
+            <img src="./img/touxiang.jpg" alt="" v-show="show">
+        </div>
+        <br>
+
+        <div>
+            <select name="" id="" @change="changeImg">
+                <option value="1" :selected="index==1">图片1</option>
+                <option value="2" :selected="index==2">图片2</option>
+                <option value="3" :selected="index==3">图片3</option>
+                <!-- <option value="" v-for="(item,index) in arr">{{item }}</option> -->
+            </select><br>
+            <img src="./img/touxiang.jpg" alt="" v-if="index==1">
+            <img src="./img/littleboy.gif" alt="" v-else-if="index==2">
+            <img src="./img/littleboy2.gif" alt="" v-else="index==3">
+        </div>
+
+        <div>
+            <!-- 下拉列表选择图片 -->
+            <select name="" id="" v-model="imgUrl">
+                <option :value="./img/touxiang.jpg">图片1</option>
+                <option :value="./img/littleboy.gif">图片2</option>
+                <option :value="./img/littleboy2.gif">图片3</option>
+            </select><br>
+            <img :src="imgUrl" alt="">
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: ' ',
+                show: true,
+                index: 1,
+                imgUrl: '',
+                arr: ['littleboy', 'littleboy2']
+            },
+            methods: {
+                changeImg: function() {
+                    this.index++;
+                    if (this.index > 3) {
+                        this.index = 1;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

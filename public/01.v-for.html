@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <base href="/"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一个vue的demo</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <p>{{msg}}</p>
+        <p>-------------------------------</p>
+        <p>夏季热销水果</p>
+        <ul>
+            <li v-for="(item,index) in fruit">{{item}}</li>
+        </ul>
+        <p>-------------------------------</p>
+        <p>我的爱好</p>
+        <ol>
+            <li v-for="(item,index) in hobbies">{{item}}</li>
+        </ol>
+        <p>-------------------------------</p>
+        <input type="button" value="你点我个试试">
+        <p>-------------------------------</p>
+        <h3>{{msg2}}</h3>
+        <h3 v-text="msg2">v-text指令</h3>
+        <h3 v-html="msg2">v-html指令</h3>
+    </div>
+    <script>
+        // 轮播插件
+        // var swiper = new Swiper({
+        // el: '#app',
+        // });
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                fruit: ['banana', 'apple', 'orange', 'strawberry', 'watermelon'],
+                hobbies: {
+                    eating: '吃饭',
+                    sleeping: '睡觉',
+                    dadoudou: '打豆豆'
+                },
+                msg2: '<i>我是斜体</i>'
+            }
+        })
+        setTimeout(function() {
+            app.msg = 'Hello World'
+        }, 2000)
+    </script>
+</body>
+
+</html>

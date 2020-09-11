@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" @input="currentValue=$event.target.value" :value="currentValue">{{currentValue}}
+        <input type="text" v-model="currentValue">
+
+        <customer-input v-model="currentValue"></customer-input>
+        <customer-input v-model="currentValue"></customer-input>
+        <customer-input v-model="currentValue"></customer-input>
+    </div>
+    <script>
+        Vue.component('customer-input', {
+            template: `
+                <div>
+                    <input type="text" :value="value" @input="$emit('input',$event.target.value)">
+                </div>
+            `,
+            data() {
+                return {
+                    value: 0
+                }
+            },
+            props: ['value']
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                currentValue: '初始值'
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

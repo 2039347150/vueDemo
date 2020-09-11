@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="destoryVM">destroyVM</button>
+        <p v-if="isShow">你好吗？</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: true
+            },
+            // 1.初始化阶段
+            beforeCreated() {
+                console.log('beforeCreated');
+            },
+            created() {
+                console.log('created')
+            },
+            beforeMounted() {
+                console.log('before Mounted')
+            },
+            mounted() {
+                // 初始化显示之后立即调用
+                this.intervalId = setInterval(() => {
+                    console.log('--------------');
+                    this.isShow = !this.isShow
+                }, 1000)
+            },
+            // 2.更新阶段
+            beforeUpdated() {
+                console.log('before Updated')
+            },
+            updated() {
+                console.log('updated')
+            },
+            beforeDestory() {
+                // 死亡之前调用一次
+                clearInterval(this.intervalId);
+            },
+            methods: {
+                destoryVM() {
+                    this.$destory()
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

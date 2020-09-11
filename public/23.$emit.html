@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <script type="text/x-template" id="countBtn">
+        <button @click="countAdd">点击了{{count}}次</button>
+        <!-- <button @click="count++">点击了{{count}}次</button> -->
+    </script>
+    <div id="app">
+        <p>点击次数总和为：{{sum}}</p>
+        <count-button @count-change="sum++"></count-button>
+        <count-button @count-change="sum++" @ten-time="tenTimeHandle"></count-button>
+        <count-button @count-change="sum++" @ten-time="alert($event)"></count-button>
+    </div>
+    <script>
+        Vue.component("CountButton", {
+            template: "#countBtn",
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                countAdd: function() {
+                    this.count++;
+                    // 向父容器抛送一个事件
+                    this.$emit('count-change');
+                    // 每10次抛送另一个事件
+                    if (this.count % 10 == 0) {
+                        this.$emit('ten-time')
+                    }
+                },
+
+            }
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                sum: 0
+            },
+            methods: {
+                tenTimeHandle(param) {
+                    alert('执行了' + param);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

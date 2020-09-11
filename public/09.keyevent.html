@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <textarea name="" @keypress="keyEvent" id="" cols="30" rows="10">{{content}}</textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                content: ''
+            },
+            methods: {
+                keyEvent(e) {
+                    console.log('e事件为：', e);
+                    var txt = [];
+                    if (e.shiftKey) {
+                        txt.push('shift');
+                    } else if (e.ctrlKey) {
+                        txt.push('ctrl');
+                    }
+                    txt.push(e.key);
+                    console.log(e);
+                    console.log('txt的值为：', txt);
+                    console.log('content的值为：', this.content);
+                    this.content += txt.join('+') + '\n';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

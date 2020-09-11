@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <base href="/"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        img {
+            width: 50%;
+            height: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <span v-bind:title="msg">鼠标悬停查看提示信息</span>
+        <p><span :title="msg">鼠标悬停查看提示信息</span></p>
+        <img :src="imgUrl" alt="头像" v-on:click='imgUrl="./img/littleboy.gif"'>
+        <input type="button" :disabled="true" value="点击事件1">
+        <input type="button" :disabled="false" value="点击事件2"><br/>
+        <button @click="changeOption">切换下拉选项</button>
+        <select name="" id="">
+            <option :selected="index==1" value="">男生</option>
+            <option :selected="index==2" value="">女生</option>
+            <option :selected="index==3" value="">保密</option>
+        </select>
+
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '创建时间为：' + new Date().toLocaleDateString(),
+                imgUrl: './img/touxiang.jpg',
+                index: 1
+            },
+            methods: {
+                changeOption: function() {
+                    this.index++;
+                    if (this.index > 3) {
+                        this.index = 1;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

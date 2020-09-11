@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: paleturquoise;
+            position: absolute;
+            top: 100px;
+            left: calc(50%-50px);
+        }
+        
+        #app {
+            height: 300px;
+            background-color: thistle;
+            position: relative;
+        }
+        
+        .v-enter {
+            left: calc(10% - 50px);
+        }
+        
+        .v-enter-active {
+            transition: all 1s;
+        }
+        
+        .v-enter-to {
+            left: calc(50% - 50px);
+        }
+        
+        .v-leave {
+            left: calc(50% - 50px);
+        }
+        
+        .v-leave-active {
+            transition: all 2s;
+        }
+        
+        .v-leave-to {
+            left: calc(90% - 50px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" @click="show=!show">
+        <h2>transition+6个动画类</h2>
+        <transition>
+            <div class="box" v-if="show"></div>
+        </transition>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                show: false
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

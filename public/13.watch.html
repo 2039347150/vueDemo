@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h4>监听姓改变样式</h4>
+        <table>
+            <tr>
+                <td>姓</td>
+                <td><input type="text" v-model="lastName"></td>
+            </tr>
+            <tr>
+                <td>名</td>
+                <td><input type="text" v-model="firstName"></td>
+            </tr>
+        </table>
+        <div>{{lastName+firstName}}</div>
+        <div :style="{color:fontColor}">{{fullName()}}</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                lastName: "",
+                firstName: "",
+                fontColor: 'green'
+            },
+            methods: {
+                fullName() {
+                    if (this.lastName == '张') {
+                        this.fontColor = 'red';
+                    } else {
+                        this.fontColor = 'green';
+                    }
+                    return this.lastName + this.firstName
+                }
+            },
+            // 监听
+            watch: {
+                lastName: function(val, oldVal) {
+                    // 当监听的值发生变化时，会执行该方法
+                    console.log(val, oldVal);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

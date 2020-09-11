@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class Person {
+            name = "张三";
+            age = 18;
+            weight = 100;
+            _sex; //Person的私有属性，只允许在类的内部访问
+            constructor(n, a, w) {
+                console.log('Person的构造函数被执行', n, a, w);
+                this.name = n;
+                this.age = a;
+                this.w = w;
+            }
+            introduce() {
+                return `我叫${this.name},今年${this.age}岁,体重${this.weight}`
+            }
+        }
+        // 实例化
+        var p1 = new Person();
+        console.log('p1说：', p1.introduce());
+
+        var p2 = new Person();
+        p2.name = "李四";
+        p2.age = 20;
+        p2.weight = 120;
+        console.log('p2说：', p2.introduce());
+
+        var p3 = new Person('麻子', 22, 130);
+        console.log('p3说：', p3.introduce());
+
+        // 超人
+        class SuperMan extends Person {
+            // name='zs',
+            // age=100,
+            // weight=200,
+            speed;
+            flySpeed;
+            constructor(name, age, weight, speed, flySpeed) {
+                super(name, age, weight) //调用父类的构造函数
+                this.speed = speed;
+                this.flySpeed = flySpeed;
+            }
+            introduce() {
+                //  子类重写父类方法
+                return super.introduce() + `,我的奔跑速度：${this.speed},我的飞行速度：${this.flySpeed}`
+            };
+            fly() {
+
+            };
+            eat() {
+
+            };
+            deadEye() {
+
+            }
+        }
+        // 实例化子类(超类)，会调用父类（基类）的构造函数
+        var p4 = new SuperMan('赛罗', 20, 180, '10km', '20km');
+        console.log('p4说：', p4.introduce())
+
+        class FrontCoder extends Person {
+            constructor(name, age, weight) {
+                super(name, age, weight);
+            }
+            writeHTML() {
+                console.log('熟练掌握HTML')
+            }
+            writeCSS() {
+                console.log('熟练掌握CSS')
+            }
+            writeJS() {
+                console.log('熟练掌握JS')
+            }
+            writeVUE() {
+                console.log('熟练掌握VUE')
+            }
+            introduce() {
+                this.writeHTML;
+                this.writeCSS;
+                this.writeJS;
+                this.writeVUE;
+            }
+        }
+
+        var p5 = new FrontCoder('小红', 22, 90);
+        console.log(p4.introduce());
+
+        class Person2 {
+            name;
+            age;
+            // weight;
+            _sex;
+            // sex = '男';
+            _id = '1';
+            constructor(name, age, sex, id) {
+                this.name = name;
+                this.age = age;
+                this._sex = sex;
+                this._id = id;
+            }
+            introduce() {
+                return `我的名字叫${this.name},年龄${this.age},性别${this._sex},id${this._id}`
+            }
+            set sex(value) {
+                // set方法 公开某些属性的修改权限
+                if (value == '男' || value == '女') {
+                    this._sex = value;
+                } else {
+                    console.log('设置的值不正确');
+                }
+            }
+            get sex() {
+                // get方法，公开某些方法的读取权限
+                return this._sex;
+            }
+        }
+        var p6 = new Person2('小黑', 23, '男', '20001');
+        // p6._sex = '公';
+        console.log(p6.introduce());
+
+
+        // 原型prototype
+        // 在运行时修改类结构
+        console.log(SuperMan.prototype);
+        console.log(SuperMan.__proto__);
+        console.log('Person的原型：', Person.prototype);
+        console.log('Person的原型对象：', Person.__proto__);
+        console.log('Person的原型对象的原型：', Person.prototype.__proto__);
+        console.log(SuperMan.prototype === p4.__proto__);
+        console.log(SuperMan.prototype.__proto__ === Person.__proto__);
+
+        var p7 = new SuperMan.prototype.__proto__.constructor('li', 20, 100);
+        console.log(p7.introduce());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

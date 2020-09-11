@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <link rel="stylesheet" href="./10.calcu.css" type="text/css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="calculator">
+            <div class="result" style="grid-area: result;">0</div>
+            <button style="grid-area: ac;">AC</button>
+            <button style="grid-area: plus-minus;">±</button>
+            <button style="grid-area: percent;">%</button>
+            <button style="grid-area: add;">+</button>
+            <button style="grid-area: subtract;">-</button>
+            <button style="grid-area: multiply;">×</button>
+            <button style="grid-area: divide;">÷</button>
+            <button style="grid-area: equal;">=</button>
+
+            <button style="grid-area: number-1;">1</button>
+            <button style="grid-area: number-2;">2</button>
+            <button style="grid-area: number-3;">3</button>
+            <button style="grid-area: number-4;">4</button>
+            <button style="grid-area: number-5;">5</button>
+            <button style="grid-area: number-6;">6</button>
+            <button style="grid-area: number-7;">7</button>
+            <button style="grid-area: number-8;">8</button>
+            <button style="grid-area: number-9;">9</button>
+            <button style="grid-area: number-0;">0</button>
+
+            <button style="grid-area: dot;">.</button>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                content: ''
+            },
+            methods: {
+                onClick(e) {
+                    if (e.target.getAttribute('colspan') == 4) {
+                        return;
+                    }
+                    this.content += target.innerText
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        #app {
+            background-color: palevioletred;
+            height: 300px;
+            /* position: relative */
+        }
+        
+        .box1,
+        .box2,
+        .box3 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            /* left: calc(10%-50px); */
+        }
+        
+        .box1 {
+            background-color: skyblue;
+            top: 100px;
+        }
+        
+        .box2 {
+            background-color: palegreen;
+            top: 200px;
+        }
+        
+        .box3 {
+            background-color: pink;
+            top: 300px;
+        }
+        
+        .v-enter,
+        .xxx-enter {
+            opacity: 0;
+            left: 10%;
+            /* left: calc(10%-50px); */
+        }
+        
+        .v-enter-active {
+            transition: all 1s;
+        }
+        
+        .v-enter-to {
+            left: calc(50% - 50px);
+        }
+        
+        .v-leave {
+            left: calc(50% - 50px);
+        }
+        
+        .v-leave-active {
+            transition: all 2s;
+        }
+        
+        .v-leave-to {
+            opacity: 0;
+            left: calc(90% - 50px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" @click="index++">
+        <h2>多个元素切换</h2>
+        <transition>
+            <div key="1" class="box1" v-if="index==0"></div>
+            <div key="2" class="box2" v-else-if="index==1"></div>
+            <div key="3" class="box3" v-else></div>
+        </transition>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                index: 0
+            },
+            watch: {
+                index: function(val) {
+                    if (val > 2) {
+                        this.index = 0;
+                    }
+                }
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

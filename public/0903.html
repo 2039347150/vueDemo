@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        .style1 {
+            background: pink;
+            border-bottom: 4px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 作业1 -->
+        <div>
+            <input type="text" :style="style1" @click="changeStyle">
+            <button @click="returnStyle">搜索</button>
+        </div>
+    </div>
+    <div id="app2">
+        <!-- 作业2 -->
+        <ul>
+            <li :style="style" :class="{style1:tab1}" @click="tabChange" value="1">tab1</li>
+            <li :style="style" :class="{style1:tab2}" @click="tabChange" value="2">tab2</li>
+            <li :style="style" :class="{style1:tab3}" @click="tabChange" value="3">tab3</li>
+        </ul>
+    </div>
+    <div id="app3">
+        <ul>
+            <li :class='{active:ac==1}'  @click='ac=1'>tab1</li>
+                <li :class='{active:ac==2}'  @click='ac=2'>tab2</li>
+                    <li :class='{active:ac==3}'  @click='ac=3'>tab3</li>
+        </ul>
+        <div class="line"  :style='{left:lineP+"px",transition:"left ease-in-out .5s"}'></div>
+    </div>
+
+    <script>
+    </script>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                show: true,
+                style1: {
+                    width: "80px"
+                },
+                style2: {
+                    width: "160px",
+                    transition: "all 2s ease"
+                }
+            },
+            methods: {
+                changeStyle: function() {
+                    this.style1 = this.style2;
+                },
+                returnStyle: function() {
+                    this.style1 = {
+                        width: "80px",
+                        transition: "all 2s ease"
+                    };
+                }
+            }
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data: { 
+                tab1:  true,
+                tab2:  false,
+                tab3:  false ,
+                style: {
+                    padding: "5px 15px",
+                    border: "1px solid blue",
+                    borderRadius: "3px",
+                    listStyle: "none",
+                    float: 'left',
+                    background: 'skyblue',
+                }                
+            },
+             methods:  {                    
+                tabChange(event) {                        
+                    console.log(event.target.value);                        
+                    if (event.target.value  ==  '1') {                            
+                        this.tab1 =  true;                            
+                        this.tab2 =  false;                            
+                        this.tab3  =  false;                        
+                    } else  if (event.target.value  ==  '2') {                            
+                        this.tab1 =  false;                            
+                        this.tab2 =  true;                            
+                        this.tab3  =  false;                        
+                    } else  if (event.target.value  ==  '3') {                            
+                        this.tab1 =  false;                            
+                        this.tab2 =  false;                            
+                        this.tab3  =  true;                        
+                    }                    
+                }                
+            }            
+        });
+        var app3 = new  Vue({            
+            el:   '#app3',
+            data:  {                
+                ac:  1,
+                            
+            },
+            computed:  {                
+                lineP()  {                    
+                    return  8  +  (this.ac  -  1)  *  102                
+                }            
+            }        
+        })
+    </script>
+</body>
+
+</html>

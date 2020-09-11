@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 作业3 -->
+        <div>
+            <input type="text" value="" v-model="num1">
+            <select name="" id="" v-model="operate">
+                <option :value="item" v-for="(item,index) in cal">{{item}}</option>
+            </select>
+            <input type="text" value="" v-model="num2">
+            <span>=</span>
+            <input type="text" value="" v-model="result">
+            <button @click="calculate">计算</button>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num1: '',
+                num2: '',
+                num3: '',
+                operate: '',
+                cal: ['+', '-', '*', '/'],
+                result: ''
+            },
+            methods: {
+                calculate() {
+                    this.result = eval(this.num1 + this.operate + this.num2);
+                    console.log('结果为：', this.result);
+
+                    // this.num1 = Number(this.num1);
+                    // this.num2 = Number(this.num2);
+                    // this.num3 = Number(this.num3);
+                    // // console.log('num3的类型', this.num3);
+                    // switch (this.operate) {
+                    //     case '+':
+                    //         this.num3 = this.num1 + this.num2;
+                    //         break;
+                    //     case '-':
+                    //         this.num3 = this.num1 - this.num2;
+                    //         break;
+                    //     case '*':
+                    //         this.num3 = this.num1 * this.num2;
+                    //         break;
+                    //     case '/':
+                    //         this.num3 = this.num1 / this.num2;
+                    //         break;
+                    // }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

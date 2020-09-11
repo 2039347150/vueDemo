@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div :style="{color:fontColor,fontSize:fontSize}">对象参数</div>
+        <div :style=[style1,style2]>数组参数</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                fontColor: "red",
+                fontSize: "16px",
+                style1: {
+                    color: 'yellow',
+                    fontSize: '33px',
+                    textAlign: 'center'
+                },
+                style2: {
+                    color: 'blue',
+                    fontSize: '44px'
+                }
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

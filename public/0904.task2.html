@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        #app {
+            padding: 20px 0px 0px 20px;
+        }
+        
+        .tab li {
+            display: inline-block;
+            border: 1px solid purple;
+            background-color: green;
+            width: 80px;
+            height: 30px;
+            border-radius: 5px;
+            line-height: 30px;
+            border-bottom: none;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .tab {
+            font-size: 0;
+            position: relative;
+        }
+        
+        li.active {
+            color: blueviolet;
+            background-color: chartreuse;
+        }
+        
+        .line {
+            width: 82px;
+            height: 4px;
+            background-color: rgb(196, 54, 54);
+            position: absolute;
+            left: 82px;
+            bottom: 0;
+            /* transition: all 1s; */
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        li:nth-child(1).active~.line {
+            left: 0px;
+        }
+        
+        li:nth-child(2).active~.line {
+            left: 82px;
+        }
+        
+        li:nth-child(3).active~.line {
+            left: 164px;
+        }
+        
+        .box1,
+        .box2,
+        .box3 {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            background: skyblue;
+        }
+        
+        .box2 {
+            background: rgb(153, 120, 207);
+        }
+        
+        .box3 {
+            background: plum;
+        }
+        
+        .v-enter {
+            opacity: 0;
+            left: 100px;
+        }
+        
+        .v-enter-to {
+            left: 20px;
+            opacity: 1;
+        }
+        
+        .v-leave-to {
+            opacity: 0;
+        }
+        
+        .v-enter-active,
+        .v-enter-active {
+            transition: all 1s;
+        }
+        
+        .v-leave {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul class="tab">
+            <li :class="{active:index==1}" @click="index=1">tab1</li>
+            <li :class="{active:index==2}" @click="index=2">tab2</li>
+            <li :class="{active:index==3}" @click="index=3">tab3</li>
+            <div class="line"></div>
+        </ul>
+        <transition>
+            <div class="box1" :key="1" v-if="index==1">box1</div>
+            <div class="box2" :key="2" v-else-if="index==2">box2</div>
+            <div class="box3" :key="3" v-else="index==3">box3</div>
+        </transition>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                index: 1
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

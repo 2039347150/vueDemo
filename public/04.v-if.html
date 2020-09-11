@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <base href="/"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        img {
+            width: 10%;
+            height: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h4 v-if="show">你现在可以看到我,但是两秒后我就要消失了</h4>
+        <button @click="isShow=!isShow">显示隐藏图片</button>
+        <img src="./img/littleboy.gif" alt="" v-if="isShow">
+        <img src="./img/touxiang.jpg" alt="" v-show="isShow">
+
+        <div>
+            <button @click="sex++">点击改变性别</button> 性别:
+            <span v-if="sex==1">男</span>
+            <span v-else-if="sex==0">女</span>
+            <span v-else>未知</span>
+        </div>
+
+        <div>
+            <input type="number" name="" id="" placeholder="请输入成绩" :value="grade" v-model="grade" min="0" max="100" step="10">
+            <div>成绩
+                <span v-if="grade>90">优</span>
+                <span v-else-if="grade>=80">良</span>
+                <span v-else-if="grade>=70">及格</span>
+                <span v-else>差</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                show: true,
+                isShow: false,
+                sex: 0,
+                grade: 0
+            },
+            methods: {
+
+            }
+        })
+        setTimeout(function() {
+            app.show = false;
+        }, 2000)
+    </script>
+</body>
+
+</html>

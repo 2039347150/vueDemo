@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        .err {
+            outline: red;
+        }
+        
+        .icon {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            background: url('./img/icon1.png') no-repeat;
+        }
+        
+        .icon-rain {
+            background-position: -80px 0px;
+        }
+        
+        .icon-cloud {
+            background-position: -80px -80px;
+        }
+        
+        .face-icon {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background: url('./img/icon2.jpg') no-repeat
+        }
+        
+        .face-icon-sb {
+            background-position: 0 -250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h3>对象作为class属性的参数</h3>
+        <form action="" @submit.prevent="onSubmit">
+            <table class="table table-hover">
+                <tr>
+                    <td>用户名</td>
+                    <td><input type="text" :class="{err:unHasErr}" v-model="username"></td>
+                </tr>
+                <tr>
+                    <td>密码</td>
+                    <td><input type="password" :class="{err:pwdHasErr}" v-model="password"></td>
+                </tr>
+                <tr>
+                    <td>年龄</td>
+                    <td><input type="text" :class="{err:ageHasErr}" v-model="age"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="提交" @click="onSubmit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="app2">
+        <span class="icon icon-rain"></span>
+        <span class="face-icon face-icon-sb"></span>
+        <!-- <span class="icon icon-cloud"></span> -->
+        <span :class='[icon1,icon2]' @click="changeIcon"></span>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                unHasErr: false,
+                pwdHasErr: false,
+                ageHasErr: false,
+                username: '',
+                password: '',
+                age: ''
+            },
+            methods: {
+                onSubmit() {
+                    if (!/^[a-zA-Z]{4,6}/.test(this.username)) {
+                        this.unHasErr = true;
+                    } else {
+                        this.unHasErr = false;
+                    }
+                    this.pwdHasErr = !/^[a-zA-Z]{4,6}$/.test(this.username);
+                    // this.unHasErr = Math.random() > 0.5;
+                    // this.pwdHasErr = Math.random() > 0.5;
+                    // this.ageHasErr = Math.random() > 0.5;
+                }
+            },
+            computed: {
+                ageHasErr: function() {
+                    return /^(1[0-2]\d|[1-9]\d|\d)$/.test(this.age)
+                }
+            }
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                icon1: 'face-icon',
+                icon2: 'face-icon-sb'
+            },
+            methods: {
+                changeIcon() {
+                    if (this.icon1 == 'face-icon') {
+                        this.icon1 = 'icon';
+                        this.icon2 = 'icon-cloud';
+                    } else {
+                        this.icon1 = 'face-icon';
+                        this.icon2 = 'face-icon-sb';
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

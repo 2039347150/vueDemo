@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            border: 1px dotted black;
+            padding: 8px 2px;
+            margin-top: 10px;
+        }
+        
+        .v-enter,
+        .v-leave-to {
+            /* opacity: 0; */
+            transform: translateY(80px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.6s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app2">
+        <p>
+            <span>id:<input type="text" v-model="id"></span>
+            <span>name:<input type="text" v-model="name"></span>
+            <span><button @click="addValue">添加</button></span>
+        </p>
+        <!-- <ul> -->
+        <transition-group tag="ul" class="main" appear>
+            <li v-for="(item,index) in arr" :key="item.id" @click="delValue(index)">id：{{item.id}}-----------name：{{item.name}}</li>
+        </transition-group>
+        <!-- </ul> -->
+    </div>
+    <script>
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                id: '',
+                name: '',
+                obj: {},
+                arr: [{
+                    id: '111',
+                    name: 'zs'
+                }]
+            },
+            methods: {
+                addValue: function() {
+                    this.arr.push({
+                        id: this.id,
+                        name: this.name
+                    });
+                    console.log(this.arr)
+                },
+                delValue: function(index) {
+                    this.arr.splice(index, 1);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

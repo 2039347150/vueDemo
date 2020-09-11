@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <button v-on:click="reverFun">翻转p标签内容</button>
+
+        <!-- --数据的双向绑定-- -->
+        <p>{{msg}}</p>
+        <input type="text" v-model="msg">
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'god a dog'
+            },
+            methods: {
+                reverFun: function() {
+                    this.msg = this.msg.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

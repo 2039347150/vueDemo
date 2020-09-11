@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h4>事件修饰符</h4>
+        <p>
+            <a href="" @click.prevent="changeColor">点击改变颜色</a>
+        </p>
+        <p>
+            <a href="" @click.once="changeColor">点击改变颜色(只改变一次)</a>
+        </p>
+        <p>----------------------</p>
+        <div>
+            <h4>事件的内联方法</h4>
+            <button @click="say('hi,')">say you</p>
+            <button @click="say('hello,')">say me</p>
+            <button @click="say('hey,')">say we together</button>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                randomColor() {
+                    return `rgb(${Math.ceil(Math.random()*255)},${Math.ceil(Math.random()*255)},${Math.ceil(Math.random()*255)})`
+                },
+                changeColor: function(event) {
+                    console.log(event);
+                    event.target.style.color = this.randomColor();
+                },
+                say: function(msg) {
+                    if (typeof msg === 'number') {
+                        for (let i = 0; i < msg.length; i++) {
+                            console.log(i + 'i love u,do you love me?')
+                        }
+                    } else {
+                        alert(msg + 'i love u,do you love me?');
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

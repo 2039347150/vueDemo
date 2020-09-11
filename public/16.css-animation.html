@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: palegreen;
+            transition: all 1s;
+        }
+        
+        .yellow-box {
+            width: 500px;
+            height: 500px;
+            background-color: skyblue;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2>动态改变class，结合css动画</h2>
+        <button @click="otherStyle=!otherStyle">变</button>
+        <div :class='["box",{"yellow-box":otherStyle}]'></div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                otherStyle: false
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

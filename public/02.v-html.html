@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <base href="/"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>度娘为你找到相关结果约{{num}}条结果</h2>
+        <h2>度娘为你找到相关结果约<span v-html="num"></span>条结果</h2>
+        <p>度娘为你找到相关结果约<b><span @click="num=Math.ceil(Math.random()*200+100)">{{num}}</span></b>条结果</p>
+        <h3>搜索结果为{{result}}</h3>
+        <p>搜索结果为<span v-html="result"></span></p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num: Math.ceil(Math.random() * 900 + 100),
+                result: Math.random() > 0.5 ? `<i>${Math.ceil(Math.random()*900+100)}</i>` : `<b>${Math.ceil(Math.random()*900+100)}</b>`
+            }
+        })
+    </script>
+</body>
+
+</html>

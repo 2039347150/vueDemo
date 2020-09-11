@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style: none;
+            border: 1px solid green;
+            background-color: palegreen;
+            padding: 10px 15px;
+            font-weight: bolder;
+            color: #666;
+        }
+        
+        ul {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .v-enter,
+        .v-leave-to {
+            transform: scale(2);
+            opacity: 0;
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box">
+            <!-- <ul> -->
+            <transition-group tag="ul" class="main" appear>
+                <li :key="item" v-for="(item,index) in subs" @click="subs.splice(index,1)">{{item}}</li>
+            </transition-group>
+            <!-- </ul> -->
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                subs: ['html', 'css', 'js', 'vue']
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

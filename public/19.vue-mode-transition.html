@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        input {
+            width: 100px;
+        }
+        
+        .t1 {
+            color: blue;
+            background-color: rgb(127, 127, 231);
+        }
+        
+        .t2 {
+            color: green;
+            background-color: rgb(142, 214, 160);
+        }
+        
+        .t3 {
+            color: red;
+            background-color: rgb(231, 127, 127);
+        }
+        
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+        }
+        
+        .v-enter-active,
+        .v-enter-active {
+            transition: all 1s;
+        }
+        
+        .v-enter-to,
+        .v-leave {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="number" name="" id="" placeholder="请输入成绩" v-model="grade" min="0" max="100" step="10">
+        <transition mode="out-in">
+            <span key="1" class="t1" v-if="grade>80">优</span>
+            <span key="2" class="t2" v-else-if="grade>60">良</span>
+            <span key="3" class="t3" v-else>差</span>
+        </transition>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                grade: 0
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
