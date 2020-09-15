@@ -1,6 +1,6 @@
 <template>
     <div>
-        <header class="header">顶部菜单</header>
+        <header class="header"><h2>顶部菜单</h2></header>
         <nav class="nav">
             <ul>
                 <li><router-link to="/backend/list">用户列表</router-link></li>

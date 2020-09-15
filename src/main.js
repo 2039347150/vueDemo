@@ -2,23 +2,33 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import App2 from './App2'
+// import App from './App3'
 import router from './router'
 import $ from 'jquery'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min.js'
+// import '../static/css/bootstrap.min.css'
+// import '../static/js/bootstrap.min.js'
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
-// import './base.css'
+import store from './store'
+import VueResource from 'vue-resource'
 
-Vue.use(VueAxios, Axios)
+// Vue.use({ VueAxios, Axios })
+// Vue.use(VueResource)
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 /* eslint-disable no-new */
+// new Vue({
+//     el: '#app',
+//     router,
+//     store,
+//     components: { App, App2, Axios, VueAxios, router },
+//     template: '<App/>'
+// })
 new Vue({
-    el: '#app',
+    render: h => h(App),
     router,
-    components: { App, App2 },
-    template: '<App/>'
-})
+    store,
+}).$mount('#app')

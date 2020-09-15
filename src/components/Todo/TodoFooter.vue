@@ -1,43 +1,73 @@
 <template>
     <div class="todo-footer">
         <label>
-            <input type="checkbox"/>
+            <input type="checkbox" v-model="isAllCheck" />
         </label>
-        <span><span>已完成0</span> / 全部2</span>
-        <button class="btn btn-danger">清除已完成任务</button>
+        <span><span>已完成{{completeSize}}</span> / 全部{{todos.length}}</span>
+        <button class="btn btn-danger" v-show="completeSize" @click="delAll">清除已完成任务</button>
     </div>
 </template>
 <script>
   export default {
       name:'TodoFooter',
       props:{
-        //   deleteTodo:Function
+        todos:Array,
+        deleteCompleteTodos:Function,
+        selectAllTodos:Function
+      },
+      computed:{
+          completeSize(){
+              return this.todos.reduce((preTotal,todo)=>preTotal+(todo.complete?1:0),0)
+            //   console.log('complate的长度为：',this.todos.reduce((preTotal,todo)=>preTotal+(todo.complete?1:0),0));
+          },
+          isAllCheck:{
+              get(){
+                  return this.completeSize===this.todos.length && this.completeSize>0
+              },
+              set(value){
+                //   value是当前CheckBox最新的值
+                this.selectAllTodos(value);
+
+              }
+          }
+      },
+      methods:{
+          delAll(){
+                const {todos,deleteCompleteTodos,selectAllTodos}=this
+                if(window.confirm(`确认删除任务吗?`)){
+                selectAllTodos()
+            }
+          }
       }
   }
 </script>
-<style>
+<style scoped>
     .todo-footer {
-    height: 40px;
-    line-height: 40px;
-    padding-left: 6px;
-    margin-top: 5px;
-}
+        height: 40px;
+        line-height: 40px;
+        padding-left: 6px;
+        margin-top: 5px;
+    }
 
-.todo-footer label {
-    display: inline-block;
-    margin-right: 20px;
-    cursor: pointer;
-}
+    .todo-footer label {
+        display: inline-block;
+        margin-right: 20px;
+        cursor: pointer;
+    }
 
-.todo-footer label input {
-    position: relative;
-    top: -1px;
-    vertical-align: middle;
-    margin-right: 5px;
-}
+    .todo-footer label input {
+        position: relative;
+        top: -1px;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
 
-.todo-footer button {
-    float: right;
-    margin-top: 5px;
-}
+    .todo-footer button {
+        float: right;
+        margin-top: 5px;
+        background-color:orangered;
+        border:none;
+        padding:5px 8px;
+        color:white;
+    }
 </style>

@@ -8,9 +8,8 @@ import UserProfile from '../views/users/UserProfile.vue'
 import UserPosts from '../views/users/UserPosts.vue'
 import Blog from '../views/Blog.vue'
 import Error404 from '../views/Error404.vue'
-import CountBtn from '../vuex/CountBtn'
-import DragReszingDemo from '../vuex/DragResizable'
-import AccountDemo from '../vuex/Account'
+import CountBtn from '../views/VUEX/CountBtn'
+import DragReszingDemo from '../views/VUEX/DragResizable'
 
 // vue中安装路由插件
 Vue.use(VueRouter)
@@ -121,10 +120,6 @@ routes = [{
         path: '/vuex_2',
         name: 'vuex_2',
         component: DragReszingDemo
-    }, {
-        path: '/vuex_3',
-        name: 'vuex_3',
-        component: AccountDemo
     }
 ]
 

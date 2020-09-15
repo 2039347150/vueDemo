@@ -1,38 +1,23 @@
 <template>
-  <div id="app" class="todo-container">
-    <div>
-      <!-- <h2>App2</h2> -->
-      <router-view class="left"></router-view>
-      <router-view name="all" class="right"></router-view>
-    </div>
+  <div class="container">
+    <Search></Search>
+    <UsersMain></UsersMain>
+    <!--<users-main></users-main>-->
   </div>
-
 </template>
 
 <script>
+  import Search from './components/Users/Search.vue'
+  import Main from './components/Users/Main.vue'
 
-export default {
-  name: 'App',
-  components: {
-   
-  },
-  methods:{
-    
+  export default {
+    components: {
+      Search,
+      UsersMain: Main
+    }
   }
-}
 </script>
 
-<style scoped>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* text-align: center; */
-    color: #2c3e50;
-    /* color:green; */
-    /* margin-top: 60px; */
-  }
-  .router-link-exact-active,.router-link-active{
-    color:red;
-  }
+<style>
+
 </style>

@@ -35,9 +35,9 @@
       }
   }
 </script>
-<style>
+<style scoped>
     .todo-header input {
-    width: 578px;
+    width: 560px;
     height: 28px;
     font-size: 14px;
     border: 1px solid #ccc;
