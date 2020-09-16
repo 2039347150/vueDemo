@@ -12,6 +12,12 @@ import VueAxios from 'vue-axios'
 import store from './store'
 import VueResource from 'vue-resource'
 
+import Router from 'vue-router'
+const originReplace = Router.prototype.replace
+Router.prototype.replace = function replace(location) {
+    return originReplace.call(this, location).catch(err => err)
+}
+
 // Vue.use({ VueAxios, Axios })
 // Vue.use(VueResource)
 Vue.prototype.$axios = Axios
