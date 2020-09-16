@@ -16,49 +16,47 @@
 <script>
     import PubSub from 'pubsub-js'
     import axios from 'axios'
-  export default {
-      name:'Main',
-      components:{
-        PubSub
-      },
-      data(){ 
-        return {
-            firstView:true,
-            loading:false,
-            users:[],
-            errorMsg:' '
-        }
-      },
-      mounted(){
-        // 订阅搜索消息
-        PubSub.subscribe('search',(msg,searchName)=>{
-            const url=`https://api.github.com/search/users?q=${searchName}`;
-            // 更新状态（请求中）
-            this.firstView=false;
-            this.loading=true
-            // 发送ajax请求
-            axios.get(url).then(response=>{
-                const result=response.data;
-                const users=result.items.map((item)=>({
-                    url:item.html_url,
-                    avatar_url:item.avator_url,
-                    name:item.login
-                }))
-                // 成功，更新状态（成功）
-                this.loading=false;
-                this.users=users
-            }).catch(error=>{
-                // 失败，更新状态（失败）
-                this.loading=false
-                this.errorMsg='请求失败'
+    export default {
+        name:'Main',
+        components:{
+            PubSub
+        },
+        data(){ 
+            return {
+                firstView:true,
+                loading:false,
+                users:[],
+                errorMsg:' '
+            }
+        },
+        mounted(){
+            // 订阅搜索消息
+            PubSub.subscribe('search',(msg,searchName)=>{
+                const url=`https://api.github.com/search/users?q=${searchName}`;
+                // 更新状态（请求中）
+                this.firstView=false;
+                this.loading=true
+                // 发送ajax请求
+                axios.get(url).then(response=>{
+                    const result=response.data;
+                    const users=result.items.map((item)=>({
+                        url:item.html_url,
+                        avatar_url:item.avator_url,
+                        name:item.login
+                    }))
+                    // 成功，更新状态（成功）
+                    this.loading=false;
+                    this.users=users
+                }).catch(error=>{
+                    // 失败，更新状态（失败）
+                    this.loading=false
+                    this.errorMsg='请求失败'
+                })
             })
-        })
 
-      },
-      methods:{
-      
-      }
-  }
+        },
+        methods:{}
+    }
 </script>
 <style scoped>
      .card {

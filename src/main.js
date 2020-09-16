@@ -14,21 +14,22 @@ import VueResource from 'vue-resource'
 
 // Vue.use({ VueAxios, Axios })
 // Vue.use(VueResource)
-Vue.prototype.$axios = axios
+Vue.prototype.$axios = Axios
 
 Vue.config.productionTip = false
 Vue.config.devtools = true
 
 /* eslint-disable no-new */
-// new Vue({
-//     el: '#app',
-//     router,
-//     store,
-//     components: { App, App2, Axios, VueAxios, router },
-//     template: '<App/>'
-// })
 new Vue({
-    render: h => h(App),
+    el: '#app',
     router,
     store,
-}).$mount('#app')
+    components: { App },
+    template: '<App/>'
+})
+
+// new Vue({
+//     render: h => h(App),
+//     router,
+//     store,
+// }).$mount('#app')
